@@ -37,6 +37,13 @@
                 </g-link>
               
             </li>
+            <li class="list-inline-item mb-0">
+              <b-navbar-brand class="mb-0">
+              <a href="https://github.com/ITSMPlus/itsm.plus" target="_blank" class="nav-link text-light" alt="ITSM+ Github Repository">
+                <font-awesome :icon="['fab', 'github']"></font-awesome>
+              </a>
+              </b-navbar-brand>
+            </li>
           </ul>
         </b-col>
       </b-row>
