@@ -42,7 +42,7 @@ module.exports = {
       use: '@gridsome/source-filesystem',
       options: {
         typeName: 'Article',
-        baseDir: './git-content/articles',
+        baseDir: './content/articles',
         path: '**/*.md',
         refs: {
           tags: {
@@ -61,7 +61,7 @@ module.exports = {
       use: '@gridsome/source-filesystem',
       options: {
         typeName: 'News',
-        baseDir: './git-content/news',
+        baseDir: './content/news',
         path: '*.md',
         refs: {
           tags: {
@@ -80,7 +80,7 @@ module.exports = {
       use: '@gridsome/source-filesystem',
       options: {
         typeName: 'Resource',
-        baseDir: './git-content/resources',
+        baseDir: './content/resources',
         path: '*.md',
         refs: {
           tags: {
