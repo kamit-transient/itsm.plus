@@ -36,8 +36,8 @@
 <script src="~/pageScripts/resources.js"></script>
 
 <page-query>
-  query($title: String!, $page: Int) {
-    records: allResource(filter:{type:{eq:$title}},sortBy:"createdAt", order:DESC, perPage: 9, page: $page) @paginate {
+  query($title: [String], $page: Int) {
+    records: allResource(filter:{type:{contains:$title}},sortBy:"createdAt", order:DESC, perPage: 9, page: $page) @paginate {
       totalCount
       pageInfo {
         totalPages

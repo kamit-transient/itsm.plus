@@ -61,6 +61,7 @@ module.exports = function (api) {
 
     if (options.internal.typeName === 'Resource') {
       options.recordType = options.internal.typeName;
+      options.type = (typeof options.type === 'string') ? options.type.split(',').map(string => string.trim()) : options.type;
       options.tags = (typeof options.tags === 'string') ? options.tags.split(',').map(string => string.trim()) : options.tags;
       return {
         ...options
