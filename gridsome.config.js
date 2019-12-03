@@ -37,16 +37,7 @@ module.exports = {
     }
   },
   plugins: [
-    {
-      use: '@noxify/gridsome-source-git',
-      options: {
-        name: 'git-content',
-        remote: 'https://github.com/ITSMPlus/content.git',
-        target: 'git-content',
-        pattern: ['**/*.md'],
-        typeName: 'GitNode'
-      }
-    },
+    
     {
       use: '@gridsome/source-filesystem',
       options: {
@@ -88,6 +79,24 @@ module.exports = {
     {
       use: '@gridsome/source-filesystem',
       options: {
+        typeName: 'Resource',
+        baseDir: './git-content/resources',
+        path: '*.md',
+        refs: {
+          tags: {
+            typeName: 'Tag',
+            create: true
+          },
+          type: {
+            typeName: 'ResourceType',
+            create: true
+          }
+        },
+      }
+    },
+    {
+      use: '@gridsome/source-filesystem',
+      options: {
         typeName: 'Credits',
         baseDir: './content/credits',
         path: '*.md'
@@ -102,20 +111,6 @@ module.exports = {
       }
     },
     {
-      use: '@gridsome/source-filesystem',
-      options: {
-        typeName: 'Resource',
-        baseDir: './git-content/resources',
-        path: '*.md',
-        refs: {
-          tags: {
-            typeName: 'Tag',
-            create: true
-          }
-        },
-      }
-    },
-    {
       use: '@gridsome/plugin-sitemap',
       options: {
         cacheTime: 600000, // default
@@ -123,6 +118,10 @@ module.exports = {
           '/articles/*': {
             changefreq: 'weekly',
             priority: 0.7
+          },
+          '/resources/*': {
+            changefreq: 'weekly',
+            priority: 0.5
           },
           '/news/*': {
             changefreq: 'weekly',
@@ -161,10 +160,17 @@ module.exports = {
       path: '/articles/:title',
       component: './src/templates/Article.vue'
     }],
-    Tag: [{
-      path: '/tag/:title',
-      component: './src/templates/Tag.vue'
-    }],
+    Tag: [
+      {
+        path: '/tag/:title',
+        component: './src/templates/Tag.vue'
+      },
+      {
+        name: 'resourcesByTag',
+        path: '/resources/filter/tags/:title',
+        component: './src/templates/ResourceTagFilter.vue'
+      }
+    ],
     News: [{
       path: '/news/:title',
       component: './src/templates/News.vue'
@@ -173,16 +179,13 @@ module.exports = {
       path:'/pages/:title',
       component: './src/templates/CustomPage.vue'
     }],
-    /*Resource: [
+    ResourceType: [
       {
-        path: '/resources/filter/type/:type',
+        name: 'resourcesByType',
+        path: '/resources/filter/:type/:title',
         component: './src/templates/ResourceTypeFilter.vue'
-      },
-      {
-        path: '/resources/filter/tags/:tag',
-        component: './src/templates/ResourceTagFilter.vue'
       }
-    ]*/
+    ]
   },
   chainWebpack: config => {
     config.resolve.alias.set('@customPageImage', '@/../content/pages');

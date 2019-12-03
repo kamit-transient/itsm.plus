@@ -28,13 +28,17 @@
   /* IE9 Compat Modes */
   src: local("Rubik"), local("Rubik-Regular"),
     url("../fonts/rubik-v9-latin-regular.eot?#iefix") format("embedded-opentype"),
-    /* Super Modern Browsers */ url("../fonts/rubik-v9-latin-regular.woff") format("woff"),
-    /* Modern Browsers */ url("../fonts/rubik-v9-latin-regular.ttf") format("truetype"),
-    /* Safari, Android, iOS */ url("../fonts/rubik-v9-latin-regular.svg#Rubik") format("svg"); 
+    /* Super Modern Browsers */
+    url("../fonts/rubik-v9-latin-regular.woff") format("woff"),
+    /* Modern Browsers */
+    url("../fonts/rubik-v9-latin-regular.ttf") format("truetype"),
+    /* Safari, Android, iOS */
+    url("../fonts/rubik-v9-latin-regular.svg#Rubik") format("svg");
 }
 
 // Generate `.bg-*` color utilities
-@each $color, $value in $grays {
+@each $color,
+$value in $grays {
   @include bg-variant(".bg-gray-#{$color}", $value);
 
   .bg-gray-#{$color} {
@@ -81,14 +85,16 @@ blockquote {
   font-size: 1.25rem;
   background-color: rgba($gray-100, 0.5);
   border-left: 3px solid $gray-300;
+
   p {
-    margin:0;
+    margin: 0;
   }
 }
 
 .badge {
-  padding-top:0.6em;
+  padding-top: 0.6em;
 }
+
 .height-0 {
   height: 0;
 }
@@ -97,7 +103,18 @@ blockquote {
   opacity: 0;
 }
 
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
   font-weight: 400;
 }
 
@@ -112,6 +129,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .page-link:focus {
   box-shadow: none !important;
 }
+
 .page-link:hover {
   z-index: inherit;
 }
@@ -125,7 +143,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   z-index: 0;
 }
 
-.jarallax > .jarallax-img {
+.jarallax>.jarallax-img {
   position: absolute;
   object-fit: cover;
   /* support for plugin https://github.com/bfred-it/object-fit-images */
@@ -140,7 +158,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 [class*="height-"] {
   display: flex;
 
-  > .container {
+  >.container {
     align-self: center;
   }
 }
@@ -285,7 +303,7 @@ img.bg-image {
 }
 
 .sidebar {
-  top:1rem;
+  top: 1rem;
   list-style: none;
   margin: 0;
   font-size: .9rem;
@@ -298,10 +316,18 @@ img.bg-image {
   }
 
   a {
-    color:$gray-800;
+    color: $gray-800;
     text-decoration: none;
+
     &:hover {
       color: $primary;
+    }
+
+  }
+
+  .btn-outline-primary {
+    &:hover {
+      color: $white !important;
     }
   }
 
@@ -338,13 +364,14 @@ img.bg-image {
       font-size: .8rem;
       opacity: .8;
     }
-    
+
     ul {
       list-style: none;
       margin: 0;
       padding: 0;
     }
-    ul > li > ul {
+
+    ul>li>ul {
       list-style: decimal;
       padding-left: 10px;
     }
@@ -376,7 +403,7 @@ img.bg-image {
 
 .gridsome-highlight-code-line {
   background-color: $gray-200; //for solarized theme
-  
+
   display: block;
   margin-right: -1em;
   margin-left: -1em;
@@ -409,12 +436,14 @@ img.bg-image {
 }
 
 @media (max-width: 575px) {
+
   .article-content h2 a:before,
   .article-content h3 a:before {
     content: '';
     margin-left: 0;
   }
 }
+
 @media (min-width: 768px) {
   .min-h-screen {
     min-height: 100vh;

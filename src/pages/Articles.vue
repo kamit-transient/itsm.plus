@@ -15,12 +15,12 @@
       </b-container>
 
       <Pagination
-      baseUrl="/articles"
-      :currentPage="$page.records.pageInfo.currentPage"
-      :totalPages="$page.records.pageInfo.totalPages"
-      :maxVisibleButtons="5"
-      v-if="$page.records.pageInfo.totalPages > 1"
-    />
+        baseUrl="/articles"
+        :currentPage="$page.records.pageInfo.currentPage"
+        :totalPages="$page.records.pageInfo.totalPages"
+        :maxVisibleButtons="5"
+        v-if="$page.records.pageInfo.totalPages > 1"
+      />
     </section>
   </DefaultLayout>
 </template>
@@ -39,7 +39,7 @@ export default {
   metaInfo() {
     return {
       title: `Browse all articles`
-    }
+    };
   }
 };
 </script>

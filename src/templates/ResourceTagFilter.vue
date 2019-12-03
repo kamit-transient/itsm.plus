@@ -19,7 +19,7 @@
           </b-col>
           <b-col>
             <Pagination
-              :baseUrl="baseUrl(false,'','')"
+              :baseUrl="baseUrl(true, 'tags', $route.params.title)"
               :currentPage="$page.records.pageInfo.currentPage"
               :totalPages="$page.records.pageInfo.totalPages"
               :maxVisibleButtons="5"
@@ -36,8 +36,8 @@
 <script src="~/pageScripts/resources.js"></script>
 
 <page-query>
-  query($page:Int) {
-    records: allResource(sortBy:"createdAt", order:DESC, perPage: 9, page: $page) @paginate {
+  query($title: [String], $page:Int) {
+    records: allResource(filter:{tags:{contains:$title}},sortBy:"createdAt", order:DESC, perPage: 9, page: $page) @paginate {
       totalCount
       pageInfo {
         totalPages
