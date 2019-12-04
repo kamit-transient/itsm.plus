@@ -200,6 +200,14 @@ img.bg-image {
   }
 }
 
+.related-records {
+  div {
+    &:last-child {
+      border-width: 0px !important;
+    }
+  }
+}
+
 .no-color {
   img {
     -webkit-filter: grayscale(100%);
@@ -455,6 +463,15 @@ img.bg-image {
 @media (min-width: 768px) {
   .min-h-screen {
     min-height: 100vh;
+  }
+}
+
+@media (max-width: 767px) {
+
+  .related-records {
+    div {
+        border-right-width: 0px !important;
+    }
   }
 }
 

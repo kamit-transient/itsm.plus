@@ -157,8 +157,7 @@ module.exports = {
   },
   templates: {
     Article: [{
-      path: '/articles/:title',
-      component: './src/templates/Article.vue'
+      path: '/articles/:title'
     }],
     Tag: [
       {

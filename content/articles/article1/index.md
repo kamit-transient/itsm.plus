@@ -1,6 +1,6 @@
 ---
 title: The First Article Title
-tags: tag1, tag2, tag3
+tags: tag1
 excerpt: No sound but the muted purring of the arcade showed him broken lengths of damp chipboard and the drifting shoals
 createdAt: 2019-11-01 11:26:00
 ---

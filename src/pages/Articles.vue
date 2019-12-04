@@ -54,6 +54,7 @@ export default {
       }
       edges {
         node {
+          recordType
           title, 
           path,
           slug,

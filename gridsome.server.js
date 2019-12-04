@@ -4,6 +4,7 @@ const path = require('path');
 const fs = require('fs');
 const yaml = require('js-yaml');
 
+
 module.exports = function (api) {
   
   const slugReplacement = {
@@ -12,6 +13,9 @@ module.exports = function (api) {
     lower: true 
   };
 
+  /**
+   * Manipulates the given excerpt
+   */
   api.loadSource(({addSchemaResolvers}) => {
 
     addSchemaResolvers({
@@ -31,7 +35,15 @@ module.exports = function (api) {
 
   });
 
-
+  /**
+   * Some node customizations
+   * * ensure that the tags are always saved as an array
+   *   this allows us to use `tag1, tag2` and `['tag1', 'tag2']` as syntax in the md files
+   * 
+   * * generates the slug (maybe obsolet, but needed for the dynamic pages)
+   * 
+   * * adds the `typeName` to each node
+   */
   api.onCreateNode(options => {
     if (options.internal.typeName === 'Article') {  
       options.recordType = options.internal.typeName;
@@ -78,6 +90,56 @@ module.exports = function (api) {
 
   });
 
+  /**
+   * Creates the article details pages
+   * we're using this way, because we want to pass
+   * some values to the page context
+   * 
+   * this is required to enable the "related posts" functionality
+   */
+  api.createPages(async ({ graphql, createPage }) => {
+    // Use the Pages API here: https://gridsome.org/docs/pages-api
+    const { data } = await graphql(`{
+      allArticle {
+        edges {
+          node {
+            id
+            slug
+            path
+            tags {
+              title
+            }
+          }
+        }
+      }
+    }`);
+    
+    data.allArticle.edges.forEach(({ node }) => {
+
+      //without the map, you will get an 500 error
+      //because the graphql filter requires an array
+      //not an object
+      var tags = _.map(node.tags, function(tag) {
+        return tag.title;
+      });
+
+      createPage({
+        path: `/articles/${node.slug}`,
+        component: './src/templates/ArticleEntry.vue',
+        context: {
+          recordId: node.id,
+          tags: tags,
+        }
+      });
+      
+    });
+  });
+
+
+  /**
+   * Generates the search file
+   * which will be used to enable the fulltext search
+   */
   api.beforeBuild(({store}) => {
 
     const collectionArticle = store.getCollection('Article')._collection;
