@@ -5,6 +5,7 @@ import Sidebar from "~/layouts/sections/resources/Sidebar.vue";
 import Pagination from "~/components/Pagination.vue";
 
 export default {
+  
   components: {
     CreditCard,
     SectionContribute,

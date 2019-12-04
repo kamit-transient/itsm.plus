@@ -17,6 +17,7 @@
 @import "../../../node_modules/bootstrap/scss/list-group";
 @import "../../../node_modules/bootstrap/scss/badge";
 @import "../../../node_modules/bootstrap/scss/images";
+@import "../../../node_modules/bootstrap/scss/dropdown";
 
 /* rubik-regular - latin */
 @font-face {
@@ -64,9 +65,16 @@ $value in $grays {
 
 button:focus,
 input:focus,
-div:focus {
+div:focus
+ {
   outline: none;
   border-width: 0px !important;
+  box-shadow: none !important;
+}
+
+.dropdown-menu
+ {
+  outline: none;
   box-shadow: none !important;
 }
 

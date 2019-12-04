@@ -4,11 +4,11 @@
     <section class="pt-5 mb-5">
       <b-container>
         <b-row>
-          <b-col cols="3" class="sidebar">
+          <b-col cols="12" md="3" class="sidebar">
             <Sidebar></Sidebar>
           </b-col>
 
-          <b-col cols="9">
+          <b-col cols="12" md="9">
             <b-row>
               <CreditCard
                 v-for="edge in $page.records.edges"
